@@ -1,6 +1,6 @@
 import FluentSQLite
 import Vapor
-import FluentMySQL
+//import FluentMySQL
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
@@ -8,8 +8,9 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     //修改端口
     let myService = NIOServerConfig.default(port:8001)
     services.register(myService)
+    
     try services.register(FluentSQLiteProvider())
-    try services.register(FluentMySQLProvider())
+//    try services.register(FluentMySQLProvider())
 
     // Register routes to the router
     let router = EngineRouter.default()
@@ -29,9 +30,10 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     //使用文件数据库SQLite
     let sqlite = try SQLiteDatabase(storage: .file(path: "/Users/zhengzhilin/db.sqlite"))
-    //使用mysql
-    let config = MySQLDatabaseConfig(hostname: "127.0.0.1", port: 3306, username: "root", password: "123456", database: "mydb",transport: MySQLTransportConfig.unverifiedTLS)
-    let mysql = MySQLDatabase(config: config)
+    
+//    //使用mysql
+//    let config = MySQLDatabaseConfig(hostname: "127.0.0.1", port: 3306, username: "root", password: "123456", database: "mydb",transport: MySQLTransportConfig.unverifiedTLS)
+//    let mysql = MySQLDatabase(config: config)
     
     // Register the configured SQLite database to the database config.
     var databases = DatabasesConfig()

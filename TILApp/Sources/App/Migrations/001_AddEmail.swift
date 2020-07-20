@@ -15,14 +15,15 @@ struct AddEmail: Migration {
     //数据库变更
     static func prepare(on connection: Database.Connection) -> Future<Void> {
         return Database.update(User.self, on: connection) { builder in
-            builder.field(for: \.nickName1, type: .text, .default(.literal("")))
+//            builder.field(for: \.nickName1, type: .text, .default(.literal("")))
         }
     }
     
     //撤回操作
     static func revert(on connection: Database.Connection) -> Future<Void> {
         return Database.update(User.self, on: connection) { builder in
-            builder.deleteField(for: \.nickName1)
+            //如果是sqlite数据库的话，则无法删除字段
+//            builder.deleteField(for: \.nickName1)
         }
     }
 }

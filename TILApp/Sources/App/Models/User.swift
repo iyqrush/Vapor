@@ -7,7 +7,6 @@
 
 
 import Vapor
-import FluentMySQL
 import FluentSQLite
 
 final class User: SQLiteModel {
@@ -16,7 +15,6 @@ final class User: SQLiteModel {
     var userName: String
     var email: String
     var nickName: String
-    var nickName1: String
 }
 
 extension User: Migration {
@@ -30,4 +28,10 @@ extension User: Migration {
         }
     }
 }
+
+//遵循content协议，完成模型到json的转换
+extension User: Content {}
+
+//路由中允许使用parameter
+extension User: Parameter {}
 
