@@ -15,6 +15,7 @@ final class User: SQLiteModel {
     var userName: String
     var email: String
     var nickName: String
+    var password: String
 }
 
 extension User: Migration {

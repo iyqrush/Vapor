@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>#(title) | User</title>
+    </head>
+    <body>
+        <h3>#(user.id)</h3>
+        <h3>#(user.userName)</h3>
+        <h3>#(user.email)</h3>
+        <h3>#(user.nickName)</h3>
+        <p>Created by xxx</p>
+    </body>
+</html>

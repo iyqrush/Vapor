@@ -9,12 +9,13 @@ final class Todo: SQLiteModel {
 
     /// A title describing what this `Todo` entails.
     var title: String
+    var detail: String
 
-    /// Creates a new `Todo`.
-    init(id: Int? = nil, title: String) {
-        self.id = id
-        self.title = title
-    }
+//    /// Creates a new `Todo`.
+//    init(id: Int? = nil, title: String) {
+//        self.id = id
+//        self.title = title
+//    }
 }
 
 /// Allows `Todo` to be used as a dynamic migration.

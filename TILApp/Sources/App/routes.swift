@@ -57,9 +57,13 @@ public func routes(_ router: Router) throws {
     router.post("todos", use: todoController.create)
     router.delete("todos", Todo.parameter, use: todoController.delete)
     
+    
     //通过控制器主持路由，以达到MVC结构
     let userController = UserController()
     try router.register(collection: userController)
+    
+    //Leaf演示
+    try router.register(collection: WebsiteController())
     
     
 }

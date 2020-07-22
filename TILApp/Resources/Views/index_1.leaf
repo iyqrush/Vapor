@@ -1,0 +1,32 @@
+#set("content") {
+    <h1>用户列表</h1>
+    #if(users) {
+<!--添加美化-->
+    <table class = "table table-bordered table-hover">
+        <thead class="thead-light">
+<!--    <table>-->
+<!--        <thead>-->
+            <tr>
+                <th>ID</th>
+                <th>userName</th>
+                <th>email</th>
+                <th>nickname</th>
+            </tr>
+        </thead>
+        <tbody>
+            #for(user in users) {
+            <tr>
+                <td><a href="/user/#(user.id)">#(user.id)</a></td>
+                <td>#(user.userName)</td>
+                <td>#(user.email)</td>
+                <td>#(user.nickName)</td>
+            <tr/>
+            }
+        </tbody>
+    </table>
+    } else {
+        <h2>There aren't any user yet!</h2>
+    }
+}
+
+#embed("base_1")

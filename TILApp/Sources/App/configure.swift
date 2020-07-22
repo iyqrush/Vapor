@@ -1,5 +1,6 @@
 import FluentSQLite
 import Vapor
+import Leaf
 //import FluentMySQL
 
 /// Called before your application initializes.
@@ -11,6 +12,9 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     try services.register(FluentSQLiteProvider())
 //    try services.register(FluentMySQLProvider())
+    
+    //注册Leaf
+    try services.register(LeafProvider())
 
     // Register routes to the router
     let router = EngineRouter.default()
@@ -44,15 +48,19 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
 
     // Configure migrations
     var migrations = MigrationConfig()
-//    migrations.add(model: Todo.self, database: .sqlite)
-//    migrations.add(model: Acronym.self, database: .sqlite)
+    migrations.add(model: Todo.self, database: .sqlite)
     migrations.add(model: User.self, database: .sqlite)
     
-//    migrations.add(migration: AddEmail.self, database: .mysql)
+    //数据库升级
+    migrations.add(migration: V1.self, database: .sqlite)
     
     var commandConfig = CommandConfig.default()
     commandConfig.useFluentCommands()
     services.register(commandConfig)
     
     services.register(migrations)
+    
+    //添加Leaf渲染模式，ViewRender，
+    config.prefer(LeafRenderer.self, for: ViewRenderer.self)
+//    config.prefer(LeafRenderer.self, for: LeafRenderer.self)
 }
